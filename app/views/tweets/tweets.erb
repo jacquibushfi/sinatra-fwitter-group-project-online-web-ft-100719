@@ -1,4 +1,4 @@
-<p> Welcome, <%= current_user.username %>
+<p> Welcome <%= current_user.username %>
 <h2> Tweets </h2>
 
 <% @tweets.each do |tweet| %>
@@ -6,15 +6,3 @@
     <%= tweet.content %>
   </div>
 <% end %>
-<br>
-<br>
-<nav>
-  <% if logged_in? %>
-
-    <a href="/tweets/new"> Create Tweet </a>
-    <br> <br>
-    <a href="/logout"> Log Out </a>
-    
-  <%end %>
-
-</nav>

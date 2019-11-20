@@ -6,12 +6,13 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if !logged_in?
-      erb :'users/signup', locals: {message: "Please sign up before you sign in"}
+      erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
+    else
+      redirect to '/tweets'
     end
-    redirect to '/tweets'
   end
 
-  post '/signup' do
+  post '/signup' do 
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
@@ -22,11 +23,11 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/login' do
+  get '/login' do 
     if !logged_in?
       erb :'users/login'
     else
-      redirect to '/tweets'
+      redirect '/tweets'
     end
   end
 
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/tweets"
+      redirect "/tweets"
     else
       redirect to '/signup'
     end
