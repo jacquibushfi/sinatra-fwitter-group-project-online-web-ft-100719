@@ -24,7 +24,7 @@ describe ApplicationController do
         :password => "rainbows"
       }
       post '/signup', params
-     # expect(last_response.location).to include("/tweets")
+      expect(last_response.location).to include("/tweets")
     end
 
     it 'does not let a user sign up without a username' do
@@ -66,7 +66,7 @@ describe ApplicationController do
       }
       post '/signup', params
       get '/signup'
-      # expect(last_response.location).to include('/tweets')
+      expect(last_response.location).to include('/tweets')
     end
   end
 
@@ -83,10 +83,10 @@ describe ApplicationController do
         :password => "kittens"
       }
       post '/login', params
-      # expect(last_response.status).to eq(302)
-      # follow_redirect!
-      # expect(last_response.status).to eq(200)
-      # expect(last_response.body).to include("Welcome,")
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Welcome,")
     end
 
     it 'does not let user view login page if already logged in' do
@@ -344,9 +344,9 @@ describe ApplicationController do
         fill_in(:content, :with => "i love tweeting")
 
         click_button 'submit'
-        # expect(Tweet.find_by(:content => "i love tweeting")).to be_instance_of(Tweet)
-        # expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
-        # expect(page.status_code).to eq(200)
+        expect(Tweet.find_by(:content => "i love tweeting")).to be_instance_of(Tweet)
+        expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
+        expect(page.status_code).to eq(200)
       end
 
       it 'does not let a user edit a text with blank content' do
@@ -363,7 +363,7 @@ describe ApplicationController do
 
         click_button 'submit'
         expect(Tweet.find_by(:content => "i love tweeting")).to be(nil)
-        #expect(page.current_path).to eq("/tweets/1/edit")
+        expect(page.current_path).to eq("/tweets/1/edit")
       end
     end
 
@@ -387,8 +387,8 @@ describe ApplicationController do
         click_button 'submit'
         visit 'tweets/1'
         click_button "Delete Tweet"
-       # expect(page.status_code).to eq(200)
-       # expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
+        expect(page.status_code).to eq(200)
+        expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
       end
 
       it 'does not let a user delete a tweet they did not create' do
@@ -405,7 +405,7 @@ describe ApplicationController do
         click_button 'submit'
         visit "tweets/#{tweet2.id}"
         click_button "Delete Tweet"
-        #expect(page.status_code).to eq(200)
+        expect(page.status_code).to eq(200)
         expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
         expect(page.current_path).to include('/tweets')
       end

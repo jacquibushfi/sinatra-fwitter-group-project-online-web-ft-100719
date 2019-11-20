@@ -1,20 +1,23 @@
-source 'https://rubygems.org'
-
-gem 'activerecord', '4.2.5', :require => 'active_record'
+source 'http://rubygems.org'
+gem 'activerecord', '~> 5.2', '>= 5.2.2.1', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
-gem 'sqlite3', '1.3.11'
+gem 'sqlite3', '~>1.3.6'
 gem 'sinatra'
 gem 'thin'
 gem 'shotgun'
 gem 'tux'
 gem 'pry'
-gem 'bcrypt'
 gem 'rake'
-gem 'rspec'
-gem 'rack-test'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
-gem 'capybara'
 gem 'require_all'
-gem 'database_cleaner'
-
+gem 'sinatra-flash'
+gem 'rack-flash3'
+gem 'bcrypt'
+group :test do
+  gem 'launchy'
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rack-test'
+  gem 'database_cleaner'
+end
 
